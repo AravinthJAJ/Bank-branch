@@ -1,0 +1,82 @@
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        Bank Branches
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-3">
+        <select class="form-control" (change)="onChange($event)">
+          <option disabled selected>Select</option>
+          <option value="MUMBAI">MUMBAI</option>
+          <option value="BANGALORE">BANGALORE</option>
+          <option value="DELHI">DELHI</option>
+          <option value="PUNE">PUNE</option>
+          <option value="HYDERABAD">HYDERABAD</option>
+        </select>
+      </div>
+      <div class="col-md-3" *ngIf="bankResponse">
+        <input matInput class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </div>
+    </div>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    <div class="row" *ngIf="bankResponse">
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+      
+        <!-- bank_id Column -->
+        <ng-container matColumnDef="bank_id">
+          <th style="min-width:125px !important" mat-header-cell mat-sort-header *matHeaderCellDef> BankID </th>
+          <td mat-cell *matCellDef="let element"> {{element.bank_id}} </td>
+        </ng-container>
+      
+        <!-- bank_name Column -->
+        <ng-container matColumnDef="bank_name">
+          <th style="min-width:185px !important" mat-header-cell mat-sort-header *matHeaderCellDef> Bank Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.bank_name}} </td>
+        </ng-container>
+      
+        <!-- branch Column -->
+        <ng-container matColumnDef="branch">
+          <th style="min-width:125px !important" mat-header-cell mat-sort-header *matHeaderCellDef> Bank Branch </th>
+          <td mat-cell *matCellDef="let element"> {{element.branch}} </td>
+        </ng-container>
+      
+        <!-- address Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Bank Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <!-- ifsc Column -->
+        <ng-container matColumnDef="ifsc">
+          <th style="min-width:120px !important" mat-header-cell mat-sort-header *matHeaderCellDef> IFSC </th>
+          <td mat-cell *matCellDef="let element"> {{element.ifsc}} </td>
+        </ng-container>
+
+        <!-- city Column -->
+        <ng-container matColumnDef="city">
+          <th style="min-width:120px !important" mat-header-cell mat-sort-header *matHeaderCellDef> City </th>
+          <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+        </ng-container>
+
+        <!-- district Column -->
+        <ng-container matColumnDef="district">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> District </th>
+          <td mat-cell *matCellDef="let element"> {{element.district}} </td>
+        </ng-container>
+
+        <!-- state Column -->
+        <ng-container matColumnDef="state">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> State </th>
+          <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>
