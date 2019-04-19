@@ -20,7 +20,7 @@
         <input matInput class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </div>
     </div>
-      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
     <div class="row" *ngIf="bankResponse">
       
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
